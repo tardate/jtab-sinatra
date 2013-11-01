@@ -1,6 +1,6 @@
 /**
  * JTab - Javascript/CSS Guitar Chord and Tab Notation for the Web.
- * Version 1.3
+ * Version 1.3.1
  * Written by Paul Gallagher (http://tardate.com), 2009. (original version and maintainer)
  * Contributions:
  *   Jason Ong (https://github.com/jasonong)
@@ -32,7 +32,7 @@
 //
 
 var jtab = {
-  Version : '1.3',
+  Version : '1.3.1',
   element_count:0, //TODO:
   Strings : {
   	AboutDialog : '<html><head><title>About jTab</title></head><body style=""><p style="">jTab version: {V}</p><p><a href="http://jtab.tardate.com" target="_blank">http://jtab.tardate.com</a></p><p><input type="button" class="close" value="OK" onClick="window.close()"/></p></body></html>'
@@ -109,7 +109,7 @@ var jtab = {
     D7b9   : [ [ 3, [-1 ],  [5,2],  [4,1],  [5,3],  [4,1],  [5,4] ], [  ] ],
     D9     : [ [ 0, [2,2],  [-1 ],  [0  ],  [2,3],  [1,1],  [0  ] ], [ 12, [14,4 ],  [-1,-1],  [12,1],  [14,3],  [13,2],  [12,1] ] ],
     Dm9    : [ [ 0, [-1 ],  [-1 ],  [3,3],  [2,2],  [1,1],  [0  ] ], [ 12, [-1,-1],  [-1,-1],  [15,4],  [14,3],  [13,2],  [12,1] ] ],
-    Dmaj9  : [ [ 0, [-1 ],  [5,5],  [2,1],  [2,1],  [2,1],  [2,1] ], [  ] ],
+    Dmaj9  : [ [ 0, [-1 ],  [5,4],  [2,1],  [2,1],  [2,1],  [2,1] ], [  ] ],
     Dadd9  : [ [ 0, [-1 ],  [-1 ],  [0  ],  [2,1],  [3,2],  [0  ] ], [ 12, [-1,-1],  [-1,-1],  [12,1],  [14,3],  [15,4],  [12,1] ] ],
     D13    : [ [ 4, [-1 ],  [5,1],  [7,2],  [5,1],  [7,3],  [7,4] ], [  ] ],
     Dsus2  : [ [ 0, [-1 ],  [-1 ],  [0  ],  [2,1],  [3,3],  [0  ] ], [ 12, [-1,-1],  [-1,-1],  [12,1],  [14,3],  [15,4],  [12,1] ] ],
@@ -155,7 +155,7 @@ var jtab = {
     E7b9    : [ [ 0, [0  ],  [2,3],  [0  ],  [1,1],  [0  ],  [1,2] ], [ 12, [ 12,1],  [14,4],  [12,1],  [13,3],  [12,1],  [13,2] ] ],
     E9      : [ [ 0, [0  ],  [2,2],  [0  ],  [1,1],  [0  ],  [2,3] ], [ 12, [ 12,1],  [14,3],  [12,1],  [13,2],  [12,1],  [14,4] ] ],
     Em9     : [ [ 0, [0  ],  [2,1],  [0  ],  [0  ],  [0  ],  [2,2] ], [ 12, [ 12,1],  [14,2],  [12,1],  [12,1],  [12,1],  [14,4] ] ],
-    Emaj9   : [ [ 0, [0  ],  [2,2],  [1,1],  [1,1],  [0  ],  [2,4] ], [ 12, [ 12,1],  [14,3],  [13,2],  [13,2],  [12,1],  [4,4] ] ],
+    Emaj9   : [ [ 0, [0  ],  [2,2],  [1,1],  [1,1],  [0  ],  [2,4] ], [ 12, [ 12,1],  [14,3],  [13,2],  [13,2],  [12,1],  [14,4] ] ],
     Eadd9   : [ [ 0, [2,2],  [2,3],  [2,4],  [1,1],  [0  ],  [0  ] ], [ 12, [ 14,3],  [14,3],  [14,4],  [13,2],  [12,1],  [12,1] ] ],
     E13     : [ [ 0, [0  ],  [2,2],  [0  ],  [1,1],  [2,3],  [0  ] ], [ 12, [ 12,1],  [14,3],  [12,1],  [13,2],  [14,4],  [12,1] ] ],
     Esus2   : [ [ 0, [ -1],  [2,1],  [4,3],  [4,4],  [-1 ],  [0  ] ], [ 12, [ -1,-1],  [14,2],  [16,3],  [16,4],  [-1 ],  [12,1] ] ],
@@ -619,7 +619,10 @@ Raphael.fn.svg_params = function(x,y,l1,l2) {
 // draw the fretboard
 Raphael.fn.chord_fretboard = function ( position, chord_name ) {
   var fret_left = this.current_offset + this.margin_left;
+  // conventional fret labels
   var fret_labels = [ '', '', '', 'III', '', 'V', '', 'VII', '', 'IX', '', '', 'XII', '', '', 'XV', '', 'XVII', '', 'XIX', '', 'XXI', '' ];
+  // alternative friendly fret labels. Currently disabled, maybe bring these back as a configurable option?
+  // var fret_labels = [ '', '1fr', '2fr', '3fr', '4fr', '5fr', '6fr', '7fr', '8fr', '9fr', '10fr', '11fr', '12fr', '13fr', '14fr', '15fr', '16fr', '17fr', '18fr', '19fr', '20fr', '21fr', '' ];
 
   this.text( // chord name
     fret_left + 2.5 * this.string_spacing,
